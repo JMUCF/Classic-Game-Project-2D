@@ -9,10 +9,10 @@ public class DestroyDot : MonoBehaviour
 	
 	void Start()
 	{
-		gM = GameObject.Find("GameManager").GetComponent<GameManager>();
+		gM = GameObject.Find("Main Camera").GetComponent<GameManager>();
 	}
 	
-	private void OnCollisionEnter(Collision collision) //on colliding with dot increase player score and destroy dot
+	private void OnCollisionEnter2D(Collision2D collision) //on colliding with dot increase player score and destroy dot
 	{
 		if(collision.gameObject.CompareTag("Player"))
 		{

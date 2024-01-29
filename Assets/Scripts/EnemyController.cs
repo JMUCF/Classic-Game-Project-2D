@@ -12,7 +12,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
-        navMeshAgent = GetComponent<NavMeshAgent>();
+        //navMeshAgent = GetComponent<NavMeshAgent>();
 
         // Start following the player
         StartCoroutine(FollowPlayer());
@@ -22,7 +22,8 @@ public class EnemyController : MonoBehaviour
     {
         while (player != null)
         {
-            navMeshAgent.SetDestination(playerPos.position);
+            //navMeshAgent.SetDestination(playerPos.position);
+            //this.position = playerPos;
             yield return null;
         }
     }
