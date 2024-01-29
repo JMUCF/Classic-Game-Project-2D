@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 	
     void Start()
     {
-        
+        transform.Translate(new Vector2(0, moveSpeed) * Time.deltaTime); //move the character up
     }
 
     void Update()
@@ -28,18 +28,24 @@ public class PlayerController : MonoBehaviour
 	
 	void Movement() //		#####	fix bug where player turns after letting go of key	#####
 	{				//		##### 	change movement logic to use WASD					#####
-		transform.Translate(new Vector3(0, 0, moveSpeed) * Time.deltaTime); //move the character forward
-		if(Input.GetAxis("Horizontal") < 0 && playerInput == true)
+		if(Input.GetAxis("Horizontal") > 0 && playerInput == true)
 		{
-			//Debug.Log("Left");
-			transform.Rotate(0, -90f, 0, Space.Self);
-			StartCoroutine(WaitToTurn());
+			transform.Translate(new Vector2(moveSpeed, 0) * Time.deltaTime); //right
 		}
-		else if(Input.GetAxis("Horizontal") > 0 && playerInput == true)
+		else if(Input.GetAxis("Horizontal") < 0 && playerInput == true)
 		{
 			//Debug.Log("Right");
-			transform.Rotate(0, 90f, 0, Space.Self);
-			StartCoroutine(WaitToTurn());
+			transform.Translate(new Vector2(-moveSpeed, 0) * Time.deltaTime);
+		}
+		else if(Input.GetAxis("Vertical") > 0 && playerInput == true)
+		{
+			//Debug.Log("Right");
+			transform.Translate(new Vector2(0, moveSpeed) * Time.deltaTime);
+		}
+		else if(Input.GetAxis("Vertical") < 0 && playerInput == true)
+		{
+			//Debug.Log("Right");
+			transform.Translate(new Vector2(0, -moveSpeed) * Time.deltaTime);
 		}
 	}
 }
