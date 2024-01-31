@@ -68,5 +68,15 @@ public class Movement : MonoBehaviour
 		RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * .75f, 0f, direction, 1.5f, this.wallLayer);
 		return hit.collider != null;
 	}
+
+	public void TunnelLeft()
+	{
+
+	}
+
+	public void TunnelRight()
+	{
+
+	}
 	
 }

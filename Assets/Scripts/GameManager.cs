@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -56,7 +57,7 @@ public class GameManager : MonoBehaviour
 			this.ghosts[i].gameObject.SetActive(false);
 		}
 		this.knight.gameObject.SetActive(false);
-	}
+    }
 	
 	private void SetScore(int score)
 	{
