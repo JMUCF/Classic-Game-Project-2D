@@ -1,36 +1,87 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text scoreText;
-    public TMP_Text livesText;
-	private int score = 0;
-	private int lives = 3;
-    //private int zoom = 5; //for camera to show full map
-    //private float followSpeed = 2f;
-    //private float yOffset = 1f;
-    //public Transform player;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        livesText.text = ("Lives: " + lives);
-        //Camera.main.orthographicSize = zoom;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Vector3 newPos = new Vector3(player.position.x, player.position.y + yOffset, -10f);
-        //transform.position = Vector3.Slerp(transform.position, newPos, followSpeed*Time.deltaTime);
-    }
-
-    public void IncreaseScore() //increases the score when collecting dots
-    {
-        score += 25;
-        scoreText.text = ("Score: " + score.ToString("0000"));
-    }
+    public Ghost[] ghosts;
+	public Knight knight;
+	public Transform pellets;
+	
+	public int score;
+	public int lives;
+	
+	private void Start()
+	{
+		NewGame();
+	}
+	
+	private void Update()
+	{
+		if(Input.anyKeyDown && this.lives <= 0)
+		{
+			NewGame();
+		}
+	}
+	private void NewGame()
+	{
+		SetScore(0);
+		SetLives(3);
+		NewRound();
+	}
+	
+	private void NewRound()
+	{
+		foreach(Transform pellet in this.pellets)
+		{
+			pellet.gameObject.SetActive(true);
+		}
+		
+		Reset();
+	}
+	
+	private void Reset()
+	{
+		for(int i = 0; i < this.ghosts.Length; i++)
+		{
+			this.ghosts[i].gameObject.SetActive(true);
+		}
+		this.knight.gameObject.SetActive(true);
+	}
+	
+	private void GameOver()
+	{
+		for(int i = 0; i < this.ghosts.Length; i++)
+		{
+			this.ghosts[i].gameObject.SetActive(false);
+		}
+		this.knight.gameObject.SetActive(false);
+	}
+	
+	private void SetScore(int score)
+	{
+		this.score = score;
+	}
+	
+	private void SetLives(int lives)
+	{
+		this.lives = lives;
+	}
+	
+	public void GhostKilled(Ghost ghost)
+	{
+		SetScore(this.score + ghost.points);
+	}
+	
+	public void KnightKilled()
+	{
+		this.knight.gameObject.SetActive(false);
+		
+		SetLives(this.lives - 1);
+		
+		if(this.lives > 0)
+			Invoke(nameof(Reset), 3f);
+		else
+			GameOver();
+	}
 }
