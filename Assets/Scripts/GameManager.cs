@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
 		{
 			this.ghosts[i].gameObject.SetActive(true);
 		}
+		this.knight.transform.position = new Vector3(-1, -5.5f, 0f);
 		this.knight.gameObject.SetActive(true);
 	}
 	
