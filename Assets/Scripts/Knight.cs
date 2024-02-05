@@ -5,6 +5,9 @@ using UnityEngine;
 public class Knight : MonoBehaviour
 {
 	public Movement movement;
+	public float health;
+	public float maxHealth = 3;
+
 	
 	private void Awake()
 	{
@@ -22,4 +25,16 @@ public class Knight : MonoBehaviour
 		else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
 			this.movement.SetDirection(Vector2.right);
 	}
+
+	void OnCollisionEnter2D(Collision2D col)
+{
+	if (col.gameObject.name == "Skeleton")
+	{
+		transform.position = new Vector3(-1.091f, -5.5f, 0f);
+
+	}
+
+}
+
+
 }
