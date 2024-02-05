@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public Ghost[] ghosts;
 	public Knight knight;
 	public Transform pellets;
 	
+	public TMP_Text scoreText;
+	
+	public int ghostMultiplier;
 	public int score;
 	public int lives;
 	
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
 	
 	private void Reset()
 	{
+		ResetMultiplier();
+		
 		for(int i = 0; i < this.ghosts.Length; i++)
 		{
 			this.ghosts[i].gameObject.SetActive(true);
@@ -62,6 +67,7 @@ public class GameManager : MonoBehaviour
 	private void SetScore(int score)
 	{
 		this.score = score;
+		scoreText.text = "Score: " + score.ToString("D4");
 	}
 	
 	private void SetLives(int lives)
@@ -71,7 +77,8 @@ public class GameManager : MonoBehaviour
 	
 	public void GhostKilled(Ghost ghost)
 	{
-		SetScore(this.score + ghost.points);
+		SetScore(this.score + (ghost.points * ghostMultiplier));
+		this.ghostMultiplier++;
 	}
 	
 	public void KnightKilled()
@@ -84,5 +91,42 @@ public class GameManager : MonoBehaviour
 			Invoke(nameof(Reset), 3f);
 		else
 			GameOver();
+	}
+	
+	public void PelletEaten(Pellet pellet)
+	{
+		pellet.gameObject.SetActive(false);
+		SetScore(this.score + pellet.points);
+		
+		if(!EatenAllPellets())
+		{
+			this.knight.gameObject.SetActive(false);
+			Invoke(nameof(NewRound), 3f);
+		}
+	}
+	
+	public void PowerPelletEaten(PowerPellet pellet)
+	{
+		PelletEaten(pellet);
+		CancelInvoke();
+		Invoke(nameof(ResetMultiplier), pellet.duration);
+	}
+	
+	private bool EatenAllPellets()
+	{
+		foreach(Transform pellet in this.pellets)
+		{
+			if(pellet.gameObject.activeSelf)
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	private void ResetMultiplier()
+	{
+		this.ghostMultiplier = 1;
 	}
 }

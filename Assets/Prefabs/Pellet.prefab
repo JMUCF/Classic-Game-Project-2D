@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 7966495862497935976}
   - component: {fileID: 7966495862497935979}
-  - component: {fileID: 5502624901249427811}
-  - component: {fileID: 5584971203357544282}
+  - component: {fileID: 2811248245302138639}
+  - component: {fileID: 1890856514295048071}
   m_Layer: 0
-  m_Name: Dot
+  m_Name: Pellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7966495862497935978}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.48, y: -7.96, z: 0}
-  m_LocalScale: {x: 0.4371537, y: 0.4371537, z: 0.4371537}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: a1d73305b3eb90d4aab97a7afba86eb2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -86,8 +86,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &5502624901249427811
-CircleCollider2D:
+--- !u!61 &2811248245302138639
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -96,13 +96,23 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.50000006
---- !u!114 &5584971203357544282
+  m_Size: {x: 0.32, y: 0.32}
+  m_EdgeRadius: 0
+--- !u!114 &1890856514295048071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -111,6 +121,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7966495862497935978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 150a83dd276dba7459d1eb3a6a0d5adf, type: 3}
+  m_Script: {fileID: 11500000, guid: 96a7f76b19de9d6478d233ab6496ab7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  points: 10
