@@ -35,4 +35,13 @@ public class Ghost : MonoBehaviour
 			this.ghost.movement.SetDirection(node.availableDirections[index]);
 		}
 	}
+	
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Knight"))
+		{
+			//Debug.Log("Knight collided with Ghost!");
+			FindObjectOfType<GameManager>().KnightKilled();
+		}
+	}
 }
