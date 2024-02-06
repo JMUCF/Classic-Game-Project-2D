@@ -11,6 +11,7 @@ public class Ghost : MonoBehaviour
 	private void Awake()
 	{
 		this.movement = GetComponent<Movement>();
+		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("enemy"));
 	}
 	
 	private void OnTriggerEnter2D(Collider2D collision)
