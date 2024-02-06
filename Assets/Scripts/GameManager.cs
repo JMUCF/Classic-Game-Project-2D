@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
 		}
 		if(level == 1)
 		{
-			this.knight.transform.position = new Vector3(0f, -4.5f, 0f);
+			this.knight.transform.position = new Vector3(-1f, -5.5f, 0f);
 			//Debug.Log("current round setup: " + level);
 		}
 		else if(level == 2)
