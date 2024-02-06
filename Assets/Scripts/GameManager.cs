@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 	public Transform pellets;
 	
 	public TMP_Text scoreText;
+	public TMP_Text livesText;
 	
 	public int ghostMultiplier;
 	public int score;
@@ -52,7 +53,7 @@ public class GameManager : MonoBehaviour
 		{
 			this.ghosts[i].gameObject.SetActive(true);
 		}
-		this.knight.transform.position = new Vector3(-1, -5.5f, 0f);
+		this.knight.transform.position = new Vector3(-1f, -5.5f, 0f);
 		this.knight.gameObject.SetActive(true);
 	}
 	
@@ -74,6 +75,7 @@ public class GameManager : MonoBehaviour
 	private void SetLives(int lives)
 	{
 		this.lives = lives;
+		livesText.text = "Lives: " + lives.ToString();
 	}
 	
 	public void GhostKilled(Ghost ghost)
