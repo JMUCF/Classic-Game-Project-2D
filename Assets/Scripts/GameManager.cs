@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 	public int ghostMultiplier;
 	public int score;
 	public int lives;
+	private bool inLevel1;
 	private int level = 1;
 	
 	private void Start()
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
 	private void NewGame()
 	{
 		Debug.Log("in new game");
+		inLevel1 = GameObject.Find("level1") != null;
 		if(level == 1)
 		{
 			Debug.Log("should not see me in level 2");
@@ -65,12 +67,12 @@ public class GameManager : MonoBehaviour
 		{
 			this.ghosts[i].gameObject.SetActive(true);
 		}
-		if(level == 1)
+		if(inLevel1)
 		{
-			this.knight.transform.position = new Vector3(-1f, -5.5f, 0f);
-			//Debug.Log("current round setup: " + level);
+			this.knight.transform.position = new Vector3(0f, -4.5f, 0f);
+			Debug.Log("current round setup: " + level);
 		}
-		else if(level == 2)
+		else if(!inLevel1)
 		{
 			this.knight.transform.position = new Vector3(-1f, -5.5f, 0f);
 			//Debug.Log("current round setup: " + level);
@@ -90,15 +92,12 @@ public class GameManager : MonoBehaviour
 	private void SetScore(int score)
 	{
 		this.score = score;
-		//FindObjectOfType<UI>().SetScore(score);
 		scoreText.text = "Score: " + score.ToString("D4");
 	}
 	
 	private void SetLives(int lives)
 	{
-		Debug.Log("setting lives");
 		this.lives = lives;
-		//FindObjectOfType<UI>().SetLives(lives);
 		livesText.text = "Lives: " + lives.ToString();
 	}
 	
