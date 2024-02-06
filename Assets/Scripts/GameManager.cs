@@ -26,21 +26,14 @@ public class GameManager : MonoBehaviour
 	
 	private void Update()
 	{
-		if(Input.anyKeyDown && this.lives <= 0)
-		{
-			NewGame();
-		}
+		
 	}
 	private void NewGame()
 	{
 		Debug.Log("in new game");
 		inLevel1 = GameObject.Find("level1") != null;
-		if(level == 1)
-		{
-			Debug.Log("should not see me in level 2");
-			SetScore(0);
-			SetLives(3);
-		}
+		SetScore(0);
+		SetLives(3);
 		NewRound();
 	}
 	
@@ -87,6 +80,7 @@ public class GameManager : MonoBehaviour
 			this.ghosts[i].gameObject.SetActive(false);
 		}
 		this.knight.gameObject.SetActive(false);
+		SceneManager.LoadScene("Lose");
     }
 	
 	private void SetScore(int score)
@@ -123,7 +117,10 @@ public class GameManager : MonoBehaviour
 	{
 		pellet.gameObject.SetActive(false);
 		SetScore(this.score + pellet.points);
-		
+		if(!EatenAllPellets() && (GameObject.Find("level1") == null))
+		{
+			SceneManager.LoadScene("Win");
+		}
 		if(!EatenAllPellets())
 		{
 			this.knight.gameObject.SetActive(false);
