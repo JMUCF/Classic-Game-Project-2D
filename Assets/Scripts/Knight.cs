@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class Knight : MonoBehaviour
 {
-	private Movement movement;
+	public Movement movement;
+	public AudioSource dotAudioClip;
+	public AudioSource puAudioClip;
 	
 	private void Awake()
 	{
@@ -22,4 +24,17 @@ public class Knight : MonoBehaviour
 		else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
 			this.movement.SetDirection(Vector2.right);
 	}
+
+	public void OnCollisionEnter2D(Collision2D collision)
+	{
+		if(collision.gameObject.tag == "CollisionTag")
+		{
+			dotAudioClip.Play();
+		}
+		if(collision.gameObject.name == "Powerup")
+		{
+			puAudioClip.Play();
+		}
+	}
+
 }

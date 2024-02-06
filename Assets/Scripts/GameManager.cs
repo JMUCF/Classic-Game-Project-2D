@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
 			this.ghosts[i].gameObject.SetActive(false);
 		}
 		this.knight.gameObject.SetActive(false);
+		
     }
 	
 	private void SetScore(int score)

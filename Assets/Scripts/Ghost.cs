@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Ghost : MonoBehaviour
 {
+
     public int points = 100;
 	public Ghost ghost;
 	public Movement movement;
