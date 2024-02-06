@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
 	
 	private void NewRound()
 	{
+		Debug.Log("current round: " + level);
+		if(level == 2)
+		{
+			SceneManager.LoadScene("Level2");
+		}
 		foreach(Transform pellet in this.pellets)
 		{
 			pellet.gameObject.SetActive(true);
