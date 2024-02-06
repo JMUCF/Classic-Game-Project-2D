@@ -6,7 +6,7 @@ public class SceneController : MonoBehaviour
 {
     public void PlayButton()
     {
-        SceneManager.LoadScene("testScene");
+        SceneManager.LoadScene("Level1");
     }
     
     public void ExitButton()
