@@ -121,7 +121,10 @@ public class GameManager : MonoBehaviour
 	{
 		pellet.gameObject.SetActive(false);
 		SetScore(this.score + pellet.points);
-		
+		if(!EatenAllPellets() && (GameObject.Find("level1") == null))
+		{
+			SceneManager.LoadScene("Win");
+		}
 		if(!EatenAllPellets())
 		{
 			this.knight.gameObject.SetActive(false);
