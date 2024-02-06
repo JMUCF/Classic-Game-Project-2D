@@ -15,9 +15,11 @@ public class GameManager : MonoBehaviour
 	public int ghostMultiplier;
 	public int score;
 	public int lives;
+	private int level;
 	
 	private void Start()
 	{
+		level = 1;
 		NewGame();
 	}
 	
@@ -53,7 +55,10 @@ public class GameManager : MonoBehaviour
 		{
 			this.ghosts[i].gameObject.SetActive(true);
 		}
-		this.knight.transform.position = new Vector3(-1f, -5.5f, 0f);
+		if(level == 1)
+			this.knight.transform.position = new Vector3(0f, -4.5f, 0f);
+		else if(level == 2)
+			this.knight.transform.position = new Vector3(-1f, -5.5f, 0f);
 		this.knight.gameObject.SetActive(true);
 	}
 	
@@ -104,6 +109,7 @@ public class GameManager : MonoBehaviour
 		if(!EatenAllPellets())
 		{
 			this.knight.gameObject.SetActive(false);
+			level++;
 			Invoke(nameof(NewRound), 3f);
 		}
 	}
