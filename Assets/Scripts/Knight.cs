@@ -22,4 +22,6 @@ public class Knight : MonoBehaviour
 		else if(Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
 			this.movement.SetDirection(Vector2.right);
 	}
+
+
 }
