@@ -32,12 +32,8 @@ public class GameManager : MonoBehaviour
 	{
 		Debug.Log("in new game");
 		inLevel1 = GameObject.Find("level1") != null;
-		if(level == 1)
-		{
-			Debug.Log("should not see me in level 2");
-			SetScore(0);
-			SetLives(3);
-		}
+		SetScore(0);
+		SetLives(3);
 		NewRound();
 	}
 	
