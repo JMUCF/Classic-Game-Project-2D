@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
 			this.ghosts[i].gameObject.SetActive(false);
 		}
 		this.knight.gameObject.SetActive(false);
+		
     }
 	
 	private void SetScore(int score)
@@ -67,6 +68,11 @@ public class GameManager : MonoBehaviour
 	private void SetLives(int lives)
 	{
 		this.lives = lives;
+
+		if (lives<=0)
+		{
+			GameOver();
+		}
 	}
 	
 	public void GhostKilled(Ghost ghost)
@@ -85,4 +91,5 @@ public class GameManager : MonoBehaviour
 		else
 			GameOver();
 	}
+
 }
