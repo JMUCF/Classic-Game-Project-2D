@@ -26,10 +26,7 @@ public class GameManager : MonoBehaviour
 	
 	private void Update()
 	{
-		if(Input.anyKeyDown && this.lives <= 0)
-		{
-			NewGame();
-		}
+		
 	}
 	private void NewGame()
 	{
@@ -87,6 +84,7 @@ public class GameManager : MonoBehaviour
 			this.ghosts[i].gameObject.SetActive(false);
 		}
 		this.knight.gameObject.SetActive(false);
+		SceneManager.LoadScene("Lose");
     }
 	
 	private void SetScore(int score)
