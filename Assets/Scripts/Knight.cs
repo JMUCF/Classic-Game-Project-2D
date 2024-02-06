@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Knight : MonoBehaviour
 {
-	public Movement movement;
+	private Movement movement;
 	
 	private void Awake()
 	{
