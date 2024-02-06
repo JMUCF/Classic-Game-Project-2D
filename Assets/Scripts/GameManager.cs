@@ -157,4 +157,6 @@ public class GameManager : MonoBehaviour
 	{
 		this.ghostMultiplier = 1;
 	}
+
+
 }
