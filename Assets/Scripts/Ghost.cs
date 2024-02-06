@@ -40,7 +40,7 @@ public class Ghost : MonoBehaviour
 	{
 		if (collision.gameObject.layer == LayerMask.NameToLayer("Knight"))
 		{
-			//Debug.Log("Knight collided with Ghost!");
+			Debug.Log("Knight collided with Ghost!");
 			FindObjectOfType<GameManager>().KnightKilled();
 		}
 	}

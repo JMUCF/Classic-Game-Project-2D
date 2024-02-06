@@ -15,13 +15,11 @@ public class GameManager : MonoBehaviour
 	public int ghostMultiplier;
 	public int score;
 	public int lives;
-	private int level;
+	private int level = 1;
 	
 	private void Start()
 	{
-		//Debug.Log("in start");
-		level = 1;
-		DontDestroyOnLoad(gameObject);
+		Debug.Log("in start");
 		NewGame();
 	}
 	
@@ -34,9 +32,13 @@ public class GameManager : MonoBehaviour
 	}
 	private void NewGame()
 	{
-		//Debug.Log("in new game");
-		SetScore(0);
-		SetLives(3);
+		Debug.Log("in new game");
+		if(level == 1)
+		{
+			Debug.Log("should not see me in level 2");
+			SetScore(0);
+			SetLives(3);
+		}
 		NewRound();
 	}
 	
@@ -88,12 +90,15 @@ public class GameManager : MonoBehaviour
 	private void SetScore(int score)
 	{
 		this.score = score;
+		//FindObjectOfType<UI>().SetScore(score);
 		scoreText.text = "Score: " + score.ToString("D4");
 	}
 	
 	private void SetLives(int lives)
 	{
+		Debug.Log("setting lives");
 		this.lives = lives;
+		//FindObjectOfType<UI>().SetLives(lives);
 		livesText.text = "Lives: " + lives.ToString();
 	}
 	
