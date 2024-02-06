@@ -19,7 +19,9 @@ public class GameManager : MonoBehaviour
 	
 	private void Start()
 	{
+		//Debug.Log("in start");
 		level = 1;
+		DontDestroyOnLoad(gameObject);
 		NewGame();
 	}
 	
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
 	}
 	private void NewGame()
 	{
+		//Debug.Log("in new game");
 		SetScore(0);
 		SetLives(3);
 		NewRound();
@@ -39,7 +42,7 @@ public class GameManager : MonoBehaviour
 	
 	private void NewRound()
 	{
-		Debug.Log("current round: " + level);
+		//Debug.Log("current round: " + level);
 		if(level == 2)
 		{
 			SceneManager.LoadScene("Level2");
@@ -61,9 +64,15 @@ public class GameManager : MonoBehaviour
 			this.ghosts[i].gameObject.SetActive(true);
 		}
 		if(level == 1)
+		{
 			this.knight.transform.position = new Vector3(0f, -4.5f, 0f);
+			//Debug.Log("current round setup: " + level);
+		}
 		else if(level == 2)
+		{
 			this.knight.transform.position = new Vector3(-1f, -5.5f, 0f);
+			//Debug.Log("current round setup: " + level);
+		}
 		this.knight.gameObject.SetActive(true);
 	}
 	
