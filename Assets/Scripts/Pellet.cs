@@ -6,6 +6,15 @@ public class Pellet : MonoBehaviour
 {
     public int points = 10;
 	
+	public AudioClip collisionSound; 
+    private AudioSource audioSource;
+	
+	private void start()
+	{
+		audioSource = GetComponent<AudioSource>();
+		audioSource.clip = collisionSound;
+	}
+	
 	protected virtual void Eat()
 	{
 		FindObjectOfType<GameManager>().PelletEaten(this);
@@ -18,4 +27,12 @@ public class Pellet : MonoBehaviour
 			Eat();
 		}
 	}
+	
+	private void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.layer == LayerMask.NameToLayer("Knight"))
+        {
+            audioSource.Play();
+        }
+    }
 }
