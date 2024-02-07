@@ -7,9 +7,11 @@ public class Ghost : MonoBehaviour
     public int points = 100;
 	public Ghost ghost;
 	public Movement movement;
+	private GameManager gameManager;
 	
 	private void Awake()
 	{
+		gameManager = FindObjectOfType<GameManager>();
 		this.movement = GetComponent<Movement>();
 		Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("enemy"));
 	}
@@ -38,10 +40,16 @@ public class Ghost : MonoBehaviour
 	
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.layer == LayerMask.NameToLayer("Knight"))
+		if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") && gameManager.poweredUp == false)
 		{
 			Debug.Log("Knight collided with Ghost!");
 			FindObjectOfType<GameManager>().KnightKilled();
+		}
+		
+		else if (collision.gameObject.layer == LayerMask.NameToLayer("Knight") && gameManager.poweredUp == true)
+		{
+			Debug.Log("Knight collided with Ghost while powered up!");
+			FindObjectOfType<GameManager>().GhostKilled(this.ghost);
 		}
 	}
 }

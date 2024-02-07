@@ -11,12 +11,14 @@ public class GameManager : MonoBehaviour
 	
 	public TMP_Text scoreText;
 	public TMP_Text livesText;
+	public TMP_Text poweredUpText;
 	
 	public int ghostMultiplier;
 	public int score;
 	public int lives;
 	private bool inLevel1;
 	private int level = 1;
+	public bool poweredUp = false;
 	
 	private void Start()
 	{
@@ -97,6 +99,7 @@ public class GameManager : MonoBehaviour
 	
 	public void GhostKilled(Ghost ghost)
 	{
+		ghost.gameObject.SetActive(false);
 		SetScore(this.score + (ghost.points * ghostMultiplier));
 		this.ghostMultiplier++;
 	}
@@ -131,6 +134,8 @@ public class GameManager : MonoBehaviour
 	
 	public void PowerPelletEaten(PowerPellet pellet)
 	{
+		poweredUp = true;
+		poweredUpText.enabled = true;
 		PelletEaten(pellet);
 		CancelInvoke();
 		Invoke(nameof(ResetMultiplier), pellet.duration);
@@ -145,14 +150,14 @@ public class GameManager : MonoBehaviour
 				return true;
 			}
 		}
-		
 		return false;
 	}
 	
 	private void ResetMultiplier()
 	{
+		Debug.Log("in reset mult");
 		this.ghostMultiplier = 1;
+		poweredUp = false;
+		poweredUpText.enabled = false;
 	}
-
-
 }
